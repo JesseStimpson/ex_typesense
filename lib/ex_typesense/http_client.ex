@@ -47,7 +47,8 @@ defmodule ExTypesense.HttpClient do
       %Req.Request{
         body: body,
         method: request_method,
-        url: url
+        url: url,
+        options: %{receive_timeout: 120_000}
       }
       |> Req.Request.put_header("X-TYPESENSE-API-KEY", api_key())
       |> Req.Request.append_error_steps(retry: &Req.Steps.retry/1)
